@@ -10,7 +10,7 @@ permissions:
 
 env:
   CONFIGS_PER_FILE: 500
-  TEST_TIMEOUT: 5
+  TEST_TIMEOUT: 3
   CONCURRENT_TESTS: 100
   TEST_URL: "http://gstatic.com/generate_204"
   REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main"
@@ -74,10 +74,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git rm -rf --cached protocols/ 2>/dev/null || true
           git add README.md protocols/ 2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "Update tested configs $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git commit -m "Update configs $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
             git push
           fi
