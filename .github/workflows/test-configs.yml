@@ -1,0 +1,175 @@
+name: Test v2ray Configs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */12 * * *'
+
+permissions:
+  contents: write
+  actions: write
+
+env:
+  CONFIGS_PER_FILE: 500
+  TEST_TIMEOUT: 5
+  CONCURRENT_TESTS: 100
+  TEST_URL: "http://gstatic.com/generate_204"
+  REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/dev"
+  OUTPUT_BRANCH: dev
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    steps:
+      - name: Check if dev branch exists
+        id: check-dev
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/branches/${{ env.OUTPUT_BRANCH }}")
+          if [ "$STATUS" = "200" ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create empty dev branch
+        if: steps.check-dev.outputs.exists == 'false'
+        run: |
+          EMPTY_TREE=$(curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"tree": []}' \
+            "https://api.github.com/repos/${{ github.repository }}/git/trees" \
+            | jq -r '.sha')
+
+          COMMIT_SHA=$(curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"message\": \"Initialize dev branch [skip ci]\", \"tree\": \"${EMPTY_TREE}\", \"parents\": []}" \
+            "https://api.github.com/repos/${{ github.repository }}/git/commits" \
+            | jq -r '.sha')
+
+          curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"ref\": \"refs/heads/${{ env.OUTPUT_BRANCH }}\", \"sha\": \"${COMMIT_SHA}\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/git/refs"
+
+          echo "Created empty ${{ env.OUTPUT_BRANCH }} branch."
+
+      - name: Checkout dev branch
+        uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ env.OUTPUT_BRANCH }}
+          fetch-depth: 1
+
+      - name: Fetch scripts from main
+        run: |
+          git fetch origin main --depth=1
+          git checkout origin/main -- scripts/ subscription.txt
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install aiohttp
+
+      - name: Download latest Xray-core
+        run: |
+          LATEST=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/XTLS/Xray-core/releases/latest | jq -r '.tag_name')
+
+          if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
+            echo "Error: Failed to get latest Xray version"
+            exit 1
+          fi
+
+          echo "Xray version: $LATEST"
+
+          curl -sL -o xray.zip \
+            "https://github.com/XTLS/Xray-core/releases/download/${LATEST}/Xray-linux-64.zip"
+
+          if ! file xray.zip | grep -q "Zip"; then
+            echo "Error: Downloaded file is not a valid zip"
+            exit 1
+          fi
+
+          unzip -o xray.zip xray -d /usr/local/bin/
+          chmod +x /usr/local/bin/xray
+          xray version
+
+      - name: Run tester
+        run: |
+          python -u scripts/tester.py \
+            --subscriptions subscription.txt \
+            --xray /usr/local/bin/xray \
+            --test-url "$TEST_URL" \
+            --timeout "$TEST_TIMEOUT" \
+            --concurrent "$CONCURRENT_TESTS" \
+            --per-file "$CONFIGS_PER_FILE" \
+            --repo-url "$REPO_URL" \
+            --output-dir protocols
+
+      - name: Commit and push results
+        run: |
+          rm -rf scripts/ subscription.txt
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git rm -rf --cached . 2>/dev/null || true
+          git add README.md protocols/ 2>/dev/null || true
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Update configs $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push origin "$OUTPUT_BRANCH"
+
+      - name: Cleanup old workflow runs
+        if: always()
+        run: |
+          echo "Cleaning up old workflow runs..."
+
+          WORKFLOW_ID=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows" \
+            | jq -r '.workflows[] | select(.name == "Test v2ray Configs") | .id')
+
+          if [ -z "$WORKFLOW_ID" ] || [ "$WORKFLOW_ID" = "null" ]; then
+            echo "Could not find workflow ID, skipping cleanup"
+            exit 0
+          fi
+
+          RUNS_JSON=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_ID}/runs?per_page=100")
+
+          CURRENT_RUN="${{ github.run_id }}"
+
+          LATEST_SUCCESS=$(echo "$RUNS_JSON" | jq -r \
+            "[.workflow_runs[] | select(.id != ${CURRENT_RUN} and .conclusion == \"success\")] | sort_by(.created_at) | last | .id // empty")
+
+          echo "Current run: $CURRENT_RUN"
+          echo "Latest previous success: $LATEST_SUCCESS"
+
+          echo "$RUNS_JSON" | jq -r ".workflow_runs[] | select(
+            .id != ${CURRENT_RUN}
+            and (.id != ${LATEST_SUCCESS} or ${LATEST_SUCCESS} == null)
+            and .conclusion != \"failure\"
+            and .status == \"completed\"
+          ) | .id" | while read -r RUN_ID; do
+            if [ -n "$RUN_ID" ]; then
+              echo "  Deleting run: $RUN_ID"
+              curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/actions/runs/${RUN_ID}" || true
+            fi
+          done
+
+          echo "Cleanup complete."
