@@ -38,25 +38,51 @@ jobs:
       - name: Create empty dev branch
         if: steps.check-dev.outputs.exists == 'false'
         run: |
-          EMPTY_TREE=$(curl -s -X POST \
+          RESPONSE=$(curl -s -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"tree": []}' \
-            "https://api.github.com/repos/${{ github.repository }}/git/trees" \
-            | jq -r '.sha')
+            "https://api.github.com/repos/${{ github.repository }}/git/trees")
 
-          COMMIT_SHA=$(curl -s -X POST \
+          EMPTY_TREE=$(echo "$RESPONSE" | jq -r '.sha // empty')
+
+          if [ -z "$EMPTY_TREE" ]; then
+            echo "Error: Failed to create empty tree"
+            echo "$RESPONSE"
+            exit 1
+          fi
+
+          echo "Empty tree SHA: $EMPTY_TREE"
+
+          RESPONSE=$(curl -s -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "{\"message\": \"Initialize dev branch [skip ci]\", \"tree\": \"${EMPTY_TREE}\", \"parents\": []}" \
-            "https://api.github.com/repos/${{ github.repository }}/git/commits" \
-            | jq -r '.sha')
+            "https://api.github.com/repos/${{ github.repository }}/git/commits")
 
-          curl -s -X POST \
+          COMMIT_SHA=$(echo "$RESPONSE" | jq -r '.sha // empty')
+
+          if [ -z "$COMMIT_SHA" ]; then
+            echo "Error: Failed to create commit"
+            echo "$RESPONSE"
+            exit 1
+          fi
+
+          echo "Commit SHA: $COMMIT_SHA"
+
+          RESPONSE=$(curl -s -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "{\"ref\": \"refs/heads/${{ env.OUTPUT_BRANCH }}\", \"sha\": \"${COMMIT_SHA}\"}" \
-            "https://api.github.com/repos/${{ github.repository }}/git/refs"
+            "https://api.github.com/repos/${{ github.repository }}/git/refs")
+
+          REF=$(echo "$RESPONSE" | jq -r '.ref // empty')
+
+          if [ -z "$REF" ]; then
+            echo "Error: Failed to create branch ref"
+            echo "$RESPONSE"
+            exit 1
+          fi
 
           echo "Created empty ${{ env.OUTPUT_BRANCH }} branch."
 
@@ -148,28 +174,33 @@ jobs:
             exit 0
           fi
 
+          echo "Workflow ID: $WORKFLOW_ID"
+
           RUNS_JSON=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_ID}/runs?per_page=100")
 
           CURRENT_RUN="${{ github.run_id }}"
-
-          LATEST_SUCCESS=$(echo "$RUNS_JSON" | jq -r \
-            "[.workflow_runs[] | select(.id != ${CURRENT_RUN} and .conclusion == \"success\")] | sort_by(.created_at) | last | .id // empty")
-
           echo "Current run: $CURRENT_RUN"
-          echo "Latest previous success: $LATEST_SUCCESS"
 
-          echo "$RUNS_JSON" | jq -r ".workflow_runs[] | select(
-            .id != ${CURRENT_RUN}
-            and (.id != ${LATEST_SUCCESS} or ${LATEST_SUCCESS} == null)
-            and .conclusion != \"failure\"
-            and .status == \"completed\"
-          ) | .id" | while read -r RUN_ID; do
-            if [ -n "$RUN_ID" ]; then
-              echo "  Deleting run: $RUN_ID"
-              curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                "https://api.github.com/repos/${{ github.repository }}/actions/runs/${RUN_ID}" || true
-            fi
-          done
+          DELETE_IDS=$(echo "$RUNS_JSON" | jq -r "[
+            .workflow_runs[]
+            | select(
+                .id != ${CURRENT_RUN}
+                and .conclusion != \"failure\"
+                and .status == \"completed\"
+              )
+          ] | sort_by(.created_at) | reverse | .[1:] | .[].id")
+
+          if [ -z "$DELETE_IDS" ]; then
+            echo "No old runs to delete."
+          else
+            echo "$DELETE_IDS" | while read -r RUN_ID; do
+              if [ -n "$RUN_ID" ]; then
+                echo "  Deleting run: $RUN_ID"
+                curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  "https://api.github.com/repos/${{ github.repository }}/actions/runs/${RUN_ID}" || true
+              fi
+            done
+          fi
 
           echo "Cleanup complete."
