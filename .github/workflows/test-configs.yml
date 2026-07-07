@@ -7,15 +7,13 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 env:
   CONFIGS_PER_FILE: 500
   TEST_TIMEOUT: 5
   CONCURRENT_TESTS: 100
   TEST_URL: "http://gstatic.com/generate_204"
-  REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/dev"
-  OUTPUT_BRANCH: dev
+  REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main"
 
 jobs:
   test:
@@ -23,80 +21,10 @@ jobs:
     timeout-minutes: 300
 
     steps:
-      - name: Check if dev branch exists
-        id: check-dev
-        run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/branches/${{ env.OUTPUT_BRANCH }}")
-          if [ "$STATUS" = "200" ]; then
-            echo "exists=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "exists=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Create empty dev branch
-        if: steps.check-dev.outputs.exists == 'false'
-        run: |
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"tree": []}' \
-            "https://api.github.com/repos/${{ github.repository }}/git/trees")
-
-          EMPTY_TREE=$(echo "$RESPONSE" | jq -r '.sha // empty')
-
-          if [ -z "$EMPTY_TREE" ]; then
-            echo "Error: Failed to create empty tree"
-            echo "$RESPONSE"
-            exit 1
-          fi
-
-          echo "Empty tree SHA: $EMPTY_TREE"
-
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"message\": \"Initialize dev branch [skip ci]\", \"tree\": \"${EMPTY_TREE}\", \"parents\": []}" \
-            "https://api.github.com/repos/${{ github.repository }}/git/commits")
-
-          COMMIT_SHA=$(echo "$RESPONSE" | jq -r '.sha // empty')
-
-          if [ -z "$COMMIT_SHA" ]; then
-            echo "Error: Failed to create commit"
-            echo "$RESPONSE"
-            exit 1
-          fi
-
-          echo "Commit SHA: $COMMIT_SHA"
-
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d "{\"ref\": \"refs/heads/${{ env.OUTPUT_BRANCH }}\", \"sha\": \"${COMMIT_SHA}\"}" \
-            "https://api.github.com/repos/${{ github.repository }}/git/refs")
-
-          REF=$(echo "$RESPONSE" | jq -r '.ref // empty')
-
-          if [ -z "$REF" ]; then
-            echo "Error: Failed to create branch ref"
-            echo "$RESPONSE"
-            exit 1
-          fi
-
-          echo "Created empty ${{ env.OUTPUT_BRANCH }} branch."
-
-      - name: Checkout dev branch
+      - name: Checkout repo
         uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ env.OUTPUT_BRANCH }}
-          fetch-depth: 1
-
-      - name: Fetch scripts from main
-        run: |
-          git fetch origin main --depth=1
-          git checkout origin/main -- scripts/ subscription.txt
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -142,65 +70,14 @@ jobs:
             --repo-url "$REPO_URL" \
             --output-dir protocols
 
-      - name: Commit and push results
+      - name: Commit results
         run: |
-          rm -rf scripts/ subscription.txt
-
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git rm -rf --cached . 2>/dev/null || true
           git add README.md protocols/ 2>/dev/null || true
-
           if git diff --cached --quiet; then
             echo "No changes to commit."
-            exit 0
-          fi
-
-          git commit -m "Update configs $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
-          git push origin "$OUTPUT_BRANCH"
-
-      - name: Cleanup old workflow runs
-        if: always()
-        run: |
-          echo "Cleaning up old workflow runs..."
-
-          WORKFLOW_ID=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows" \
-            | jq -r '.workflows[] | select(.name == "Test v2ray Configs") | .id')
-
-          if [ -z "$WORKFLOW_ID" ] || [ "$WORKFLOW_ID" = "null" ]; then
-            echo "Could not find workflow ID, skipping cleanup"
-            exit 0
-          fi
-
-          echo "Workflow ID: $WORKFLOW_ID"
-
-          RUNS_JSON=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/${WORKFLOW_ID}/runs?per_page=100")
-
-          CURRENT_RUN="${{ github.run_id }}"
-          echo "Current run: $CURRENT_RUN"
-
-          DELETE_IDS=$(echo "$RUNS_JSON" | jq -r "[
-            .workflow_runs[]
-            | select(
-                .id != ${CURRENT_RUN}
-                and .conclusion != \"failure\"
-                and .status == \"completed\"
-              )
-          ] | sort_by(.created_at) | reverse | .[1:] | .[].id")
-
-          if [ -z "$DELETE_IDS" ]; then
-            echo "No old runs to delete."
           else
-            echo "$DELETE_IDS" | while read -r RUN_ID; do
-              if [ -n "$RUN_ID" ]; then
-                echo "  Deleting run: $RUN_ID"
-                curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  "https://api.github.com/repos/${{ github.repository }}/actions/runs/${RUN_ID}" || true
-              fi
-            done
+            git commit -m "Update tested configs $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
           fi
-
-          echo "Cleanup complete."
