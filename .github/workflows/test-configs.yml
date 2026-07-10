@@ -10,59 +10,48 @@ permissions:
 
 env:
   CONFIGS_PER_FILE: 500
-  TEST_TIMEOUT: 3
-  CONCURRENT_TESTS: 100
+  TEST_TIMEOUT: 5
+  CONCURRENT_TESTS: 300
   TEST_URL: "http://gstatic.com/generate_204"
-  REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/main"
+  REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
-
+    timeout-minutes: 60
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v7
 
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.12'
-
-      - name: Install dependencies
-        run: pip install aiohttp
-
-      - name: Download latest Xray-core
+      - name: Check subscription file
+        id: check
         run: |
-          LATEST=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            https://api.github.com/repos/XTLS/Xray-core/releases/latest | jq -r '.tag_name')
-
-          if [ -z "$LATEST" ] || [ "$LATEST" = "null" ]; then
-            echo "Error: Failed to get latest Xray version"
-            exit 1
+          if [ ! -s subscription.txt ] || ! grep -qv '^\s*#' subscription.txt; then
+            echo "subscription.txt has no active URLs. Skipping."
+            echo "skip=true" >> $GITHUB_OUTPUT
           fi
 
-          echo "Xray version: $LATEST"
+      - name: Set up Go
+        if: steps.check.outputs.skip != 'true'
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.26.5'
+          cache: true
 
-          curl -sL -o xray.zip \
-            "https://github.com/XTLS/Xray-core/releases/download/${LATEST}/Xray-linux-64.zip"
+      - name: Download dependencies
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          go get github.com/xtls/xray-core@latest
+          go mod tidy
 
-          if ! file xray.zip | grep -q "Zip"; then
-            echo "Error: Downloaded file is not a valid zip"
-            exit 1
-          fi
-
-          unzip -o xray.zip xray -d /usr/local/bin/
-          chmod +x /usr/local/bin/xray
-          xray version
+      - name: Build
+        if: steps.check.outputs.skip != 'true'
+        run: go build -o tester ./cmd/tester
 
       - name: Run tester
+        if: steps.check.outputs.skip != 'true'
         run: |
-          python -u scripts/tester.py \
+          ./tester \
             --subscriptions subscription.txt \
-            --xray /usr/local/bin/xray \
             --test-url "$TEST_URL" \
             --timeout "$TEST_TIMEOUT" \
             --concurrent "$CONCURRENT_TESTS" \
@@ -71,13 +60,11 @@ jobs:
             --output-dir protocols
 
       - name: Commit results
+        if: steps.check.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          git rm -rf --cached protocols/ 2>/dev/null || true
-          git add README.md protocols/ 2>/dev/null || true
-
+          git add README.md protocols/ go.mod go.sum 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
