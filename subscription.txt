@@ -1,6 +1,10 @@
-https://raw.githubusercontent.com/hamedp-71/N_sub_cheker/refs/heads/patch-1/final.txt
+https://raw.githubusercontent.com/sakha1370/OpenRay/refs/heads/main/output/all_valid_proxies.txt
+https://raw.githubusercontent.com/Danialsamadi/v2go/refs/heads/main/AllConfigsSub.txt
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt
 https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/sub/sub_merge.txt
 https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/refs/heads/main/sub.txt
 https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/xray/mix
 https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/refs/heads/main/sub/mixbase64
+https://raw.githubusercontent.com/giromo/Collector2/refs/heads/main/sub/sub_merge_base64.txt
+https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html
+https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vlessbase64
