@@ -3,6 +3,3 @@ https://raw.githubusercontent.com/mahdibland/V2RayAggregator/refs/heads/master/s
 https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/refs/heads/main/sub.txt
 https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/xray/mix
 https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/refs/heads/main/sub/mixbase64
-https://raw.githubusercontent.com/giromo/Collector2/refs/heads/main/sub/sub_merge_base64.txt
-https://raw.githubusercontent.com/arshiacomplus/v2rayExtractor/refs/heads/main/mix/sub.html
-https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/main/sub/vlessbase64
