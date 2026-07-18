@@ -9,10 +9,6 @@ permissions:
   contents: write
 
 env:
-  CONFIGS_PER_FILE: 500
-  TEST_TIMEOUT: 5
-  CONCURRENT_TESTS: 300
-  TEST_URL: "http://gstatic.com/generate_204"
   REPO_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}"
 
 jobs:
@@ -49,22 +45,14 @@ jobs:
 
       - name: Run tester
         if: steps.check.outputs.skip != 'true'
-        run: |
-          ./tester \
-            --subscriptions subscription.txt \
-            --test-url "$TEST_URL" \
-            --timeout "$TEST_TIMEOUT" \
-            --concurrent "$CONCURRENT_TESTS" \
-            --per-file "$CONFIGS_PER_FILE" \
-            --repo-url "$REPO_URL" \
-            --output-dir protocols
+        run: ./tester --config config.json --repo-url "$REPO_URL"
 
       - name: Commit results
         if: steps.check.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md protocols/ go.mod go.sum 2>/dev/null || true
+          git add REPORT.md configs/ cloudflare-ips.txt go.mod go.sum 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

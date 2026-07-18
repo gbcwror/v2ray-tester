@@ -1,0 +1,10 @@
+{
+  "subscriptions": "subscription.txt",
+  "test_url": "http://gstatic.com/generate_204",
+  "timeout": 5,
+  "concurrent": 300,
+  "per_file": 500,
+  "output_dir": "configs",
+  "report_file": "REPORT.md",
+  "cloudflare_ips_url": "https://raw.githubusercontent.com/radioactiveAHM/cf-scanner/refs/heads/main/ipv4.txt"
+}

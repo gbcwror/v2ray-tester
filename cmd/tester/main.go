@@ -1,39 +1,74 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	"runtime"
 
+	"v2ray-tester/internal/cfcheck"
 	"v2ray-tester/internal/converter"
 	"v2ray-tester/internal/fetcher"
 	"v2ray-tester/internal/output"
 	"v2ray-tester/internal/tester"
 )
 
+type Config struct {
+	Subscriptions  string `json:"subscriptions"`
+	TestURL        string `json:"test_url"`
+	Timeout        int    `json:"timeout"`
+	Concurrent     int    `json:"concurrent"`
+	PerFile        int    `json:"per_file"`
+	OutputDir      string `json:"output_dir"`
+	ReportFile     string `json:"report_file"`
+	CloudflareURL  string `json:"cloudflare_ips_url"`
+}
+
+func loadConfig(path string) (*Config, error) {
+	cfg := &Config{
+		Subscriptions: "subscription.txt",
+		TestURL:       "http://gstatic.com/generate_204",
+		Timeout:       5,
+		Concurrent:    300,
+		PerFile:       500,
+		OutputDir:     "configs",
+		ReportFile:    "REPORT.md",
+	}
+
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, fmt.Errorf("reading config file: %w", err)
+	}
+
+	if err := json.Unmarshal(data, cfg); err != nil {
+		return nil, fmt.Errorf("parsing config file: %w", err)
+	}
+
+	return cfg, nil
+}
+
 func main() {
-	subscriptions := flag.String("subscriptions", "subscription.txt", "Path to subscription file")
-	testURL := flag.String("test-url", "http://gstatic.com/generate_204", "URL to test connectivity")
-	timeoutSec := flag.Int("timeout", 5, "Test timeout in seconds")
-	concurrent := flag.Int("concurrent", 200, "Number of concurrent tests")
-	perFile := flag.Int("per-file", 500, "Configs per output file")
-	repoURL := flag.String("repo-url", "", "Repository base URL for README links")
-	outputDir := flag.String("output-dir", "protocols", "Output directory")
+	configPath := flag.String("config", "config.json", "Path to config file")
+	repoURL := flag.String("repo-url", "", "Repository base URL for report links (optional)")
 	flag.Parse()
 
-	if *repoURL == "" {
-		log.Fatal("Error: --repo-url is required")
+	cfg, err := loadConfig(*configPath)
+	if err != nil {
+		log.Fatalf("Config error: %v", err)
 	}
 
 	log.SetFlags(0)
 	log.Printf("v2ray Config Tester (Go, in-process Xray)")
 	log.Printf("Go %s | %s/%s | Concurrency=%d | Timeout=%ds",
-		runtime.Version(), runtime.GOOS, runtime.GOARCH, *concurrent, *timeoutSec)
+		runtime.Version(), runtime.GOOS, runtime.GOARCH, cfg.Concurrent, cfg.Timeout)
 	fmt.Println()
 
-	links, err := fetcher.FetchAll(*subscriptions)
+	cfChecker := cfcheck.New(cfg.CloudflareURL)
+	fmt.Println()
+
+	links, err := fetcher.FetchAll(cfg.Subscriptions)
 	if err != nil {
 		log.Fatalf("Fetch error: %v", err)
 	}
@@ -62,7 +97,7 @@ func main() {
 	}
 	fmt.Println()
 
-	results := tester.TestAll(supported, *testURL, *timeoutSec, *concurrent)
+	results := tester.TestAll(supported, cfg.TestURL, cfg.Timeout, cfg.Concurrent)
 
 	working, failed := 0, 0
 	for _, r := range results {
@@ -80,11 +115,11 @@ func main() {
 		os.Exit(0)
 	}
 
-	fileInfo, err := output.SaveResults(results, *perFile, *outputDir)
+	fileInfo, err := output.SaveResults(results, cfg.PerFile, cfg.OutputDir, cfChecker)
 	if err != nil {
 		log.Fatalf("Save error: %v", err)
 	}
-	if err := output.GenerateReadme(fileInfo, *repoURL); err != nil {
-		log.Fatalf("README error: %v", err)
+	if err := output.GenerateReport(fileInfo, *repoURL, cfg.ReportFile); err != nil {
+		log.Fatalf("Report error: %v", err)
 	}
 }
