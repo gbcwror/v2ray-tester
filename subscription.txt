@@ -1,3 +1,2 @@
 https://raw.githubusercontent.com/ALIILAPRO/v2rayNG-Config/refs/heads/main/sub.txt
-https://raw.githubusercontent.com/itsyebekhe/PSG/main/subscriptions/xray/mix
 https://raw.githubusercontent.com/MhdiTaheri/V2rayCollector/refs/heads/main/sub/mixbase64
