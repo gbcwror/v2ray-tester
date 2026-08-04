@@ -2,7 +2,7 @@
 
 Auto-tested proxy configurations, updated every 12 hours.
 
-> Last update: 2026-08-03 14:47 UTC
+> Last update: 2026-08-04 02:51 UTC
 
 ---
 
@@ -10,12 +10,12 @@ Auto-tested proxy configurations, updated every 12 hours.
 
 | Protocol | Working Configs | Files |
 |:--------:|:---------------:|:-----:|
-| VLESS | 293 | 2 |
-| VMess | 59 | 1 |
-| Shadowsocks | 126 | 1 |
-| Trojan | 9 | 1 |
-| Cloudflare | 130 | 1 |
-| **Total** | **617** | **6** |
+| VLESS | 350 | 2 |
+| VMess | 74 | 1 |
+| Shadowsocks | 123 | 1 |
+| Trojan | 55 | 1 |
+| Cloudflare | 208 | 2 |
+| **Total** | **810** | **7** |
 
 ---
 
@@ -28,7 +28,7 @@ Auto-tested proxy configurations, updated every 12 hours.
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vless/vless-1.txt
 ```
 
-> VLESS 2 (93 configs)
+> VLESS 2 (150 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vless/vless-2.txt
 ```
@@ -36,7 +36,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vless/vless-
 
 ### VMess
 
-> VMess 1 (59 configs)
+> VMess 1 (74 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vmess/vmess-1.txt
 ```
@@ -44,7 +44,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vmess/vmess-
 
 ### Shadowsocks
 
-> Shadowsocks 1 (126 configs)
+> Shadowsocks 1 (123 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/ss/ss-1.txt
 ```
@@ -52,7 +52,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/ss/ss-1.txt
 
 ### Trojan
 
-> Trojan 1 (9 configs)
+> Trojan 1 (55 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/trojan/trojan-1.txt
 ```
@@ -60,8 +60,13 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/trojan/troja
 
 ### Cloudflare
 
-> Cloudflare 1 (130 configs)
+> Cloudflare 1 (200 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/cloudflare/cf-1.txt
+```
+
+> Cloudflare 2 (8 configs)
+```
+https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/cloudflare/cf-2.txt
 ```
 
