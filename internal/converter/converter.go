@@ -55,7 +55,6 @@ func ConvertLink(link string) (M, error) {
 	}
 }
 
-
 func parseVLESS(link string) (M, error) {
 	u, err := url.Parse(link)
 	if err != nil {
@@ -93,7 +92,6 @@ func parseVLESS(link string) (M, error) {
 		"streamSettings": buildStreamSettings(params),
 	}, nil
 }
-
 
 func parseVMess(link string) (M, error) {
 	raw := link[len("vmess://"):]
@@ -214,7 +212,6 @@ func parseVMess(link string) (M, error) {
 	}, nil
 }
 
-
 func parseSS(link string) (M, error) {
 	raw := link[len("ss://"):]
 
@@ -286,7 +283,6 @@ func parseSS(link string) (M, error) {
 	}, nil
 }
 
-
 func parseTrojan(link string) (M, error) {
 	u, err := url.Parse(link)
 	if err != nil {
@@ -317,7 +313,6 @@ func parseTrojan(link string) (M, error) {
 		"streamSettings": buildStreamSettings(params),
 	}, nil
 }
-
 
 func parseHysteria2(link string) (M, error) {
 	u, err := url.Parse(link)
@@ -386,7 +381,6 @@ func parseHysteria2(link string) (M, error) {
 		"streamSettings": stream,
 	}, nil
 }
-
 
 func parseWireGuard(link string) (M, error) {
 	u, err := url.Parse(link)
@@ -461,7 +455,6 @@ func parseWireGuard(link string) (M, error) {
 		"settings": settings,
 	}, nil
 }
-
 
 func buildStreamSettings(params url.Values) M {
 	network := params.Get("type")
@@ -563,12 +556,16 @@ func buildStreamSettings(params url.Values) M {
 		if v := params.Get("host"); v != "" {
 			x["host"] = v
 		}
-		if v := params.Get("mode"); v != "" {
-			x["mode"] = v
+		mode := params.Get("mode")
+		if mode == "" {
+			mode = "auto"
 		}
-		if len(x) > 0 {
-			stream["xhttpSettings"] = x
-		}
+		x["mode"] = mode
+		x["xPaddingBytes"] = M{"from": 100, "to": 1000}
+		x["scMaxEachPostBytes"] = M{"from": 1000000, "to": 1000000}
+		x["scMinPostsIntervalMs"] = M{"from": 30, "to": 30}
+		x["scStreamUpServerSecs"] = M{"from": 20, "to": 80}
+		stream["xhttpSettings"] = x
 	case "tcp", "raw":
 		if params.Get("headerType") == "http" {
 			hosts := strings.Split(params.Get("host"), ",")
@@ -585,7 +582,6 @@ func buildStreamSettings(params url.Values) M {
 
 	return stream
 }
-
 
 func Deduplicate(links []string) []string {
 	seen := make(map[string]struct{}, len(links))
@@ -649,7 +645,6 @@ func dedupKey(link string) string {
 	}
 	return link
 }
-
 
 func b64DecodeSafe(s string) ([]byte, error) {
 	s = strings.TrimSpace(s)

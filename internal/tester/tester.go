@@ -98,6 +98,7 @@ func testOne(link, testURL string, timeout time.Duration) int {
 		return -1
 	}
 	if err := instance.Start(); err != nil {
+		instance.Close()
 		return -1
 	}
 	defer instance.Close()
