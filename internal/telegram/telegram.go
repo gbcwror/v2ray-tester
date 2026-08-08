@@ -336,20 +336,6 @@ func extractMessages(doc *goquery.Document, channel string) ([]channelMessage, e
 			extractLinksInto(cleaned, linkMap)
 		})
 
-		wrap.Find("code, pre").Each(func(_ int, el *goquery.Selection) {
-			html, err := el.Html()
-			if err != nil {
-				html = el.Text()
-			}
-			html = strings.ReplaceAll(html, "<br>", "\n")
-			html = strings.ReplaceAll(html, "<br/>", "\n")
-			html = strings.ReplaceAll(html, "<br />", "\n")
-			cleaned := htmlTagPattern.ReplaceAllString(html, "\n")
-			cleaned = decodeHTMLEntities(cleaned)
-			cleaned = linkSplitter.ReplaceAllString(cleaned, "$1\n$2")
-			extractLinksInto(cleaned, linkMap)
-		})
-
 		wrap.Find("a[href]").Each(func(_ int, a *goquery.Selection) {
 			href, _ := a.Attr("href")
 			href = decodeHTMLEntities(strings.TrimSpace(href))
