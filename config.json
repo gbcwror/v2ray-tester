@@ -1,5 +1,10 @@
 {
   "subscriptions": "subscription.txt",
+  "channels": "channels.txt",
+  "channel_max_age_days": 14,
+  "channel_max_pages": 50,
+  "channel_request_delay_ms": 500,
+  "channel_concurrent": 10,
   "test_url": "http://gstatic.com/generate_204",
   "timeout": 5,
   "concurrent": 300,

@@ -47,6 +47,8 @@ func FetchAll(subFile string) ([]string, error) {
 		log.Printf("  %-60s -> %d config(s)", truncate(url, 60), len(links))
 		all = append(all, links...)
 	}
+
+	log.Printf("Subscription total: %d", len(all))
 	return all, nil
 }
 

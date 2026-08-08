@@ -18,11 +18,26 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Check subscription file
+      - name: Check sources
         id: check
         run: |
-          if [ ! -s subscription.txt ] || ! grep -qv '^\s*#' subscription.txt; then
-            echo "subscription.txt has no active URLs. Skipping."
+          HAS_SUBS=false
+          HAS_CHANNELS=false
+
+          if [ -s subscription.txt ] && grep -qv '^\s*#' subscription.txt 2>/dev/null; then
+            if grep -qv '^\s*$' subscription.txt 2>/dev/null; then
+              HAS_SUBS=true
+            fi
+          fi
+
+          if [ -s channels.txt ] && grep -qv '^\s*#' channels.txt 2>/dev/null; then
+            if grep -qv '^\s*$' channels.txt 2>/dev/null; then
+              HAS_CHANNELS=true
+            fi
+          fi
+
+          if [ "$HAS_SUBS" = false ] && [ "$HAS_CHANNELS" = false ]; then
+            echo "No active subscriptions or channels. Skipping."
             echo "skip=true" >> $GITHUB_OUTPUT
           fi
 
@@ -37,6 +52,7 @@ jobs:
         if: steps.check.outputs.skip != 'true'
         run: |
           go get github.com/xtls/xray-core@latest
+          go get github.com/PuerkitoBio/goquery@v1.12.0
           go mod tidy
 
       - name: Build

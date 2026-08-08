@@ -7,34 +7,46 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"time"
 
 	"v2ray-tester/internal/cfcheck"
 	"v2ray-tester/internal/converter"
 	"v2ray-tester/internal/fetcher"
 	"v2ray-tester/internal/output"
+	"v2ray-tester/internal/telegram"
 	"v2ray-tester/internal/tester"
 )
 
 type Config struct {
-	Subscriptions  string `json:"subscriptions"`
-	TestURL        string `json:"test_url"`
-	Timeout        int    `json:"timeout"`
-	Concurrent     int    `json:"concurrent"`
-	PerFile        int    `json:"per_file"`
-	OutputDir      string `json:"output_dir"`
-	ReportFile     string `json:"report_file"`
-	CloudflareURL  string `json:"cloudflare_ips_url"`
+	Subscriptions       string `json:"subscriptions"`
+	Channels            string `json:"channels"`
+	ChannelMaxAgeDays   int    `json:"channel_max_age_days"`
+	ChannelMaxPages     int    `json:"channel_max_pages"`
+	ChannelRequestDelay int    `json:"channel_request_delay_ms"`
+	ChannelConcurrent   int    `json:"channel_concurrent"`
+	TestURL             string `json:"test_url"`
+	Timeout             int    `json:"timeout"`
+	Concurrent          int    `json:"concurrent"`
+	PerFile             int    `json:"per_file"`
+	OutputDir           string `json:"output_dir"`
+	ReportFile          string `json:"report_file"`
+	CloudflareURL       string `json:"cloudflare_ips_url"`
 }
 
 func loadConfig(path string) (*Config, error) {
 	cfg := &Config{
-		Subscriptions: "subscription.txt",
-		TestURL:       "http://gstatic.com/generate_204",
-		Timeout:       5,
-		Concurrent:    300,
-		PerFile:       500,
-		OutputDir:     "configs",
-		ReportFile:    "REPORT.md",
+		Subscriptions:       "subscription.txt",
+		Channels:            "channels.txt",
+		ChannelMaxAgeDays:   14,
+		ChannelMaxPages:     50,
+		ChannelRequestDelay: 500,
+		ChannelConcurrent:   10,
+		TestURL:             "http://gstatic.com/generate_204",
+		Timeout:             5,
+		Concurrent:          300,
+		PerFile:             500,
+		OutputDir:           "configs",
+		ReportFile:          "REPORT.md",
 	}
 
 	data, err := os.ReadFile(path)
@@ -51,7 +63,7 @@ func loadConfig(path string) (*Config, error) {
 
 func main() {
 	configPath := flag.String("config", "config.json", "Path to config file")
-	repoURL := flag.String("repo-url", "", "Repository base URL for report links (optional)")
+	repoURL := flag.String("repo-url", "", "Repository base URL for report links")
 	flag.Parse()
 
 	cfg, err := loadConfig(*configPath)
@@ -68,21 +80,45 @@ func main() {
 	cfChecker := cfcheck.New(cfg.CloudflareURL)
 	fmt.Println()
 
-	links, err := fetcher.FetchAll(cfg.Subscriptions)
+	var channelLinks []string
+	channels := telegram.LoadChannels(cfg.Channels)
+	if len(channels) > 0 {
+		tgCfg := telegram.Config{
+			MaxAgeDays:   cfg.ChannelMaxAgeDays,
+			MaxPages:     cfg.ChannelMaxPages,
+			RequestDelay: time.Duration(cfg.ChannelRequestDelay) * time.Millisecond,
+			Workers:      cfg.ChannelConcurrent,
+		}
+		channelLinks = telegram.ScrapeAll(channels, tgCfg)
+		fmt.Println()
+	} else {
+		log.Println("No active Telegram channels. Skipping channel scraping.")
+		fmt.Println()
+	}
+
+	var subLinks []string
+	subLinks, err = fetcher.FetchAll(cfg.Subscriptions)
 	if err != nil {
-		log.Fatalf("Fetch error: %v", err)
+		if len(channelLinks) == 0 {
+			log.Fatalf("Fetch error: %v", err)
+		}
+		log.Printf("Subscription fetch warning: %v", err)
 	}
-	if len(links) == 0 {
-		log.Fatal("Error: No configs fetched")
+	fmt.Println()
+
+	allLinks := append(channelLinks, subLinks...)
+
+	if len(allLinks) == 0 {
+		log.Fatal("Error: No configs fetched from any source")
 	}
-	log.Printf("Total fetched: %d", len(links))
+	log.Printf("Total fetched: %d (channels: %d, subscriptions: %d)", len(allLinks), len(channelLinks), len(subLinks))
 
-	links = converter.Deduplicate(links)
-	log.Printf("After dedup: %d", len(links))
+	allLinks = converter.Deduplicate(allLinks)
+	log.Printf("After dedup: %d", len(allLinks))
 
-	supported := make([]string, 0, len(links))
+	supported := make([]string, 0, len(allLinks))
 	skipped := 0
-	for _, l := range links {
+	for _, l := range allLinks {
 		if converter.GetProtocol(l) != "unknown" {
 			supported = append(supported, l)
 		} else {
