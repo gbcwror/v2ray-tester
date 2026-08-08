@@ -337,9 +337,17 @@ func extractMessages(doc *goquery.Document, channel string) ([]channelMessage, e
 		})
 
 		wrap.Find("code, pre").Each(func(_ int, el *goquery.Selection) {
-			text := decodeHTMLEntities(el.Text())
-			text = linkSplitter.ReplaceAllString(text, "$1\n$2")
-			extractLinksInto(text, linkMap)
+			html, err := el.Html()
+			if err != nil {
+				html = el.Text()
+			}
+			html = strings.ReplaceAll(html, "<br>", "\n")
+			html = strings.ReplaceAll(html, "<br/>", "\n")
+			html = strings.ReplaceAll(html, "<br />", "\n")
+			cleaned := htmlTagPattern.ReplaceAllString(html, "\n")
+			cleaned = decodeHTMLEntities(cleaned)
+			cleaned = linkSplitter.ReplaceAllString(cleaned, "$1\n$2")
+			extractLinksInto(cleaned, linkMap)
 		})
 
 		wrap.Find("a[href]").Each(func(_ int, a *goquery.Selection) {
@@ -373,6 +381,7 @@ func extractMessages(doc *goquery.Document, channel string) ([]channelMessage, e
 }
 
 func extractLinksInto(text string, linkMap map[string]string) {
+	text = linkSplitter.ReplaceAllString(text, "$1\n$2")
 	matches := proxyLinkPattern.FindAllString(text, -1)
 	for _, m := range matches {
 		link := cleanLink(m)
