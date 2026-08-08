@@ -2,10 +2,14 @@ module v2ray-tester
 
 go 1.26
 
-require github.com/xtls/xray-core v1.260327.0
+require (
+	github.com/PuerkitoBio/goquery v1.12.0
+	github.com/xtls/xray-core v1.260327.0
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.6 // indirect
+	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/apernet/quic-go v0.59.1-0.20260217092621-db4786c77a22 // indirect
 	github.com/cloudflare/circl v1.6.3 // indirect
 	github.com/ghodss/yaml v1.0.1-0.20220118164431-d8423dcdf344 // indirect
