@@ -1,4 +1,4 @@
-trojan://eabf1999fefbb7d2@waysi.waysi6688.workers.dev:2087?alpn=http%2F1.1&ed=2560&eh=Sec-WebSocket-Protocol&fp=ios&host=waysi.waysi6688.workers.dev&path=%2Ftr%2FsMpzOZ0eWEt6jbZ1jjN3BaM7LLoQ&sni=WaYSi.wAYsI6688.WOrkeRS.deV&type=ws#[🇨🇦]t.me/ConfigsHub
-trojan://humanity@212.183.88.136:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B8
-trojan://humanity@www.calmlunch.com:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B5
+trojan://5e19b3c8-c1dc-4163-95e2-895319c15d6c@ru.techdatacloud.org:8443?security=reality&pbk=jaZRUO7x7awSXNBlvKp3nXdm2gBEsEgmNbbYs7RRQlw&headerType=none&type=tcp&sni=cloud.mail.ru&sid=8c3785d47c2017ec#✅@AR14N24b
+trojan://humanity@185.220.100.168:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B8
 trojan://humanity@130.250.137.171:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.ignitelimit.com#✅@AR14N24b
+trojan://humanity@www.calmlunch.com:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0#%40hex_proxy%20%E2%81%B6
