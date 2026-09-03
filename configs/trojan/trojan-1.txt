@@ -1,8 +1,5 @@
-trojan://Telegram_healer_config@to6r63-kkchighqm2.vxz0dduq7to7su0cdqf.workers.dev:443?path=%2Ftr%2FxwtrOUcg21SS0Ega%3Fed%3D2560&security=tls&alpn=http%2F1.1&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=To6R63-kKChiGHqm2.vxz0Dduq7to7Su0CDQf.worKERs.DEV#✅@AR14N24b
-trojan://MiTiVPN@199.232.78.160:443?path=%2F---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI---TOOTFFARANGI&security=tls&alpn=http%2F1.1&host=mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&sni=ssl.fastly.com#[🏁]t.me/ConfigsHub
-trojan://humanity@216.24.57.7:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.ignitelimit.com&fp=chrome&type=ws&allowInsecure=0&sni=www.ignitelimit.com#✅@AR14N24b
-trojan://tripitropa444@xn--1ugy405pdua.gayvibe.dpdns.org:2174?allowInsecure=0&alpn=http/1.1#[🏁]t.me/ConfigsHub
-trojan://humanity@render.com:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.ignitelimit.com#✅@AR14N24b
-trojan://humanity@185.220.100.168:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B8
-trojan://humanity@88.99.189.60:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#✅@AR14N24b
+trojan://MiTiVPN@199.232.78.160:443?path=%2F---kasibam1---kasibam1---kasibam1---kasibam1---kasibam1---kasibam1---kasibam1&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#[🏁]t.me/ConfigsHub
+trojan://MiTiVPN@151.101.56.7:443?path=%2F--&security=tls&alpn=http%2F1.1&insecure=0&host=mitivpn-mitivpn-mitivpn---mitivpn--mitivpn.global.ssl.fastly.net&fp=firefox&type=ws&allowInsecure=0&sni=ssl.fastly.com#✅@AR14N24b
+trojan://tripitropa444@xn--1ugy405pdua.gayvibe.dpdns.org:2174?allowInsecure=0&alpn=http/1.1#✅@AR14N24b
 trojan://humanity@130.250.137.171:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.ignitelimit.com#Channel%20%3A%20%40Daily_Configs%20
+trojan://humanity@render.com:443?path=%2Fassignment&security=tls&insecure=0&host=www.ignitelimit.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.ignitelimit.com#✅@AR14N24b
