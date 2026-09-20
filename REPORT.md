@@ -2,7 +2,7 @@
 
 Auto-tested proxy configurations, updated every 12 hours.
 
-> Last update: 2026-09-20 04:11 UTC
+> Last update: 2026-09-20 15:44 UTC
 
 ---
 
@@ -11,11 +11,11 @@ Auto-tested proxy configurations, updated every 12 hours.
 | Protocol | Working Configs | Files |
 |:--------:|:---------------:|:-----:|
 | VLESS | 210 | 1 |
-| VMess | 12 | 1 |
-| Shadowsocks | 58 | 1 |
-| Trojan | 19 | 1 |
-| Cloudflare | 150 | 1 |
-| **Total** | **449** | **5** |
+| VMess | 15 | 1 |
+| Shadowsocks | 35 | 1 |
+| Trojan | 15 | 1 |
+| Cloudflare | 103 | 1 |
+| **Total** | **378** | **5** |
 
 ---
 
@@ -31,7 +31,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vless/vless-
 
 ### VMess
 
-> VMess 1 (12 configs)
+> VMess 1 (15 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vmess/vmess-1.txt
 ```
@@ -39,7 +39,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/vmess/vmess-
 
 ### Shadowsocks
 
-> Shadowsocks 1 (58 configs)
+> Shadowsocks 1 (35 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/ss/ss-1.txt
 ```
@@ -47,7 +47,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/ss/ss-1.txt
 
 ### Trojan
 
-> Trojan 1 (19 configs)
+> Trojan 1 (15 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/trojan/trojan-1.txt
 ```
@@ -55,7 +55,7 @@ https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/trojan/troja
 
 ### Cloudflare
 
-> Cloudflare 1 (150 configs)
+> Cloudflare 1 (103 configs)
 ```
 https://raw.githubusercontent.com/gbcwror/v2ray-tester/main/configs/cloudflare/cf-1.txt
 ```
