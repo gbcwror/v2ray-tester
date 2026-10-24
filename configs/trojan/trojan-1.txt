@@ -1,12 +1,9 @@
-trojan://humanity@www.speedtest.net:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.calmlunch.com#Channel%20%3A%20%40Daily_Configs%20
+trojan://f0eb8c92ce8946aaba856569cff1a16b@resources.findlocaljobnetworkandbuildcommunityconnections.com:443?security=tls&sni=resources.findlocaljobnetworkandbuildcommunityconnections.com&type=tcp&headerType=none#Channel%20%3A%20%40Daily_Configs
 trojan://humanity@212.183.88.136:443?path=%2F%252Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#✅@AR14N24b
 trojan://humanity@chat.openai.com:443?path=%2Fassignment&security=tls&alpn=h2&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B6
-trojan://f0eb8c92ce8946aaba856569cff1a16b@resources.findlocaljobnetworkandbuildcommunityconnections.com:443?security=tls&sni=resources.findlocaljobnetworkandbuildcommunityconnections.com&type=tcp&headerType=none#Channel%20%3A%20%40Daily_Configs
-trojan://Trojan@82164024@92.118.150.146:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=pl.tronsg.com#[🏁]t.me/ConfigsHub
 trojan://humanity@185.114.72.31:2053?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B8
 trojan://humanity@www.pleadcourt.org:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.pleadcourt.org#[🇨🇦]t.me/ConfigsHub
-trojan://humanity@144.31.205.106:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.pleadcourt.org&type=ws&allowInsecure=0&sni=www.pleadcourt.org#✅@AR14N24b
-trojan://humanity@161.35.192.122:443?allowInsecure=0&sni=www.pleadcourt.org&alpn=http/1.1&type=ws&host=www.pleadcourt.org&path=/assignment#✅@AR14N24b
-trojan://humanity@31.57.190.34:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.pleadcourt.org&fp=unsafe&type=ws&allowInsecure=0&sni=www.pleadcourt.org#%40hex_proxy%20%E2%81%B5
-trojan://humanity@46.62.204.134:443?path=%2Fassignment&security=tls&insecure=0&host=www.pleadcourt.org&type=ws&allowInsecure=0&sni=www.pleadcourt.org#[🇫🇮]t.me/ConfigsHub
-trojan://humanity@166.1.36.83:443?path=%2Fassignment&security=tls&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.calmlunch.com#%40hex_proxy%20%E2%81%B6
+trojan://0y7hid61k3k2vuy1@uwu.blueknightnet.qzz.io:2087?path=%2F%40BlueKnight_net--%40BlueKnight_net--%40BlueKnight_net&security=tls&alpn=h2&insecure=0&host=uwu.dianaw.cc.cd&fp=chrome&type=ws&allowInsecure=0&sni=uwu.dianaw.cc.cd#%40hex_proxy%20%E2%81%B4
+trojan://humanity@www.speedtest.net:443?path=%2Fassignment&security=tls&insecure=0&host=www.calmlunch.com&ech=ip.gs%2Budp%3A%2F%2F8.8.8.8&type=ws&allowInsecure=0&sni=www.calmlunch.com#Channel%20%3A%20%40Daily_Configs%20
+trojan://humanity@45.147.48.28:443?cs=semi-python&path=%2Fassignment&security=tls&alpn=http%2F1.1&fm=tlshello-0-len&insecure=0&fp=unsafe&type=ws&allowInsecure=0&sni=www.pleadcourt.org#✅@AR14N24b
+trojan://Trojan@82164024@92.118.150.146:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=pl.tronsg.com#[🏁]t.me/ConfigsHub
