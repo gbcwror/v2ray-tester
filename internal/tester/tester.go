@@ -76,10 +76,9 @@ func testOne(link, testURL string, timeout time.Duration) int {
 	}
 
 	fullConfig := converter.M{
-		"log": converter.M{"loglevel": "none"},
+		"log": converter.M{"loglevel": "warning"},
 		"outbounds": []converter.M{
 			outbound,
-			{"protocol": "freedom", "tag": "direct"},
 		},
 	}
 
