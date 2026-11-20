@@ -712,3 +712,83 @@ func firstOr(p url.Values, def string, keys ...string) string {
 	}
 	return def
 }
+
+func ExtractName(link string) string {
+	link = strings.TrimSpace(link)
+	proto := GetProtocol(link)
+	if proto == "vmess" {
+		return extractVMessName(link)
+	}
+	if i := strings.Index(link, "#"); i >= 0 {
+		raw := link[i+1:]
+		if unescaped, err := url.QueryUnescape(raw); err == nil {
+			return unescaped
+		}
+		return raw
+	}
+	return ""
+}
+
+func extractVMessName(link string) string {
+	if i := strings.Index(link, "#"); i >= 0 {
+		raw := link[i+1:]
+		if unescaped, err := url.QueryUnescape(raw); err == nil {
+			return unescaped
+		}
+		return raw
+	}
+	raw := link[len("vmess://"):]
+	decoded, err := b64DecodeSafe(raw)
+	if err != nil {
+		return ""
+	}
+	var m map[string]any
+	if err := json.Unmarshal(decoded, &m); err != nil {
+		return ""
+	}
+	if ps, ok := m["ps"].(string); ok {
+		return ps
+	}
+	return ""
+}
+
+func UpdateName(link string, newName string) string {
+	link = strings.TrimSpace(link)
+	proto := GetProtocol(link)
+	if proto == "vmess" {
+		return updateVMessName(link, newName)
+	}
+	base := link
+	if i := strings.Index(link, "#"); i >= 0 {
+		base = link[:i]
+	}
+	if newName == "" {
+		return base
+	}
+	return base + "#" + newName
+}
+
+func updateVMessName(link string, newName string) string {
+	if i := strings.Index(link, "#"); i >= 0 {
+		base := link[:i]
+		if newName == "" {
+			return base
+		}
+		return base + "#" + newName
+	}
+	raw := link[len("vmess://"):]
+	decoded, err := b64DecodeSafe(raw)
+	if err != nil {
+		return link
+	}
+	var m map[string]any
+	if err := json.Unmarshal(decoded, &m); err != nil {
+		return link
+	}
+	m["ps"] = newName
+	jsonBytes, err := json.Marshal(m)
+	if err != nil {
+		return link
+	}
+	return "vmess://" + base64.StdEncoding.EncodeToString(jsonBytes)
+}

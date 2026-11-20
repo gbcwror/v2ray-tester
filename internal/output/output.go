@@ -59,10 +59,14 @@ func SaveResults(results []tester.Result, perFile int, outputDir string, cfCheck
 		sort.Slice(byProto[p], func(i, j int) bool {
 			return byProto[p][i].DelayMs < byProto[p][j].DelayMs
 		})
+		byProto[p] = numberDuplicateNames(byProto[p])
 	}
 	sort.Slice(cfResults, func(i, j int) bool {
 		return cfResults[i].DelayMs < cfResults[j].DelayMs
 	})
+	if len(cfResults) > 0 {
+		cfResults = numberDuplicateNames(cfResults)
+	}
 
 	for _, p := range protocolOrder {
 		_ = os.RemoveAll(filepath.Join(outputDir, p))
@@ -98,6 +102,29 @@ func SaveResults(results []tester.Result, perFile int, outputDir string, cfCheck
 
 	log.Printf("Total working: %d", total)
 	return fileInfo, nil
+}
+
+func numberDuplicateNames(results []tester.Result) []tester.Result {
+	counts := make(map[string]int)
+	for _, r := range results {
+		name := converter.ExtractName(r.Link)
+		if name != "" {
+			counts[name]++
+		}
+	}
+
+	indexMap := make(map[string]int)
+	out := make([]tester.Result, len(results))
+	for i, r := range results {
+		name := converter.ExtractName(r.Link)
+		if name != "" && counts[name] > 1 {
+			indexMap[name]++
+			newName := fmt.Sprintf("%s [%d]", name, indexMap[name])
+			r.Link = converter.UpdateName(r.Link, newName)
+		}
+		out[i] = r
+	}
+	return out
 }
 
 func writeChunks(items []tester.Result, dirName, filePrefix string, perFile int, outputDir string) ([]FileInfo, error) {
