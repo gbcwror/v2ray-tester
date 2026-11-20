@@ -106,8 +106,11 @@ func SaveResults(results []tester.Result, perFile int, outputDir string, cfCheck
 
 func numberDuplicateNames(results []tester.Result) []tester.Result {
 	counts := make(map[string]int)
-	for _, r := range results {
+	cleanedNames := make([]string, len(results))
+
+	for i, r := range results {
 		name := converter.ExtractName(r.Link)
+		cleanedNames[i] = name
 		if name != "" {
 			counts[name]++
 		}
@@ -116,11 +119,15 @@ func numberDuplicateNames(results []tester.Result) []tester.Result {
 	indexMap := make(map[string]int)
 	out := make([]tester.Result, len(results))
 	for i, r := range results {
-		name := converter.ExtractName(r.Link)
-		if name != "" && counts[name] > 1 {
-			indexMap[name]++
-			newName := fmt.Sprintf("%s [%d]", name, indexMap[name])
-			r.Link = converter.UpdateName(r.Link, newName)
+		name := cleanedNames[i]
+		if name != "" {
+			if counts[name] > 1 {
+				indexMap[name]++
+				newName := fmt.Sprintf("%s [%d]", name, indexMap[name])
+				r.Link = converter.UpdateName(r.Link, newName)
+			} else {
+				r.Link = converter.UpdateName(r.Link, name)
+			}
 		}
 		out[i] = r
 	}

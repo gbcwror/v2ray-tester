@@ -716,17 +716,18 @@ func firstOr(p url.Values, def string, keys ...string) string {
 func ExtractName(link string) string {
 	link = strings.TrimSpace(link)
 	proto := GetProtocol(link)
+	var name string
 	if proto == "vmess" {
-		return extractVMessName(link)
-	}
-	if i := strings.Index(link, "#"); i >= 0 {
+		name = extractVMessName(link)
+	} else if i := strings.Index(link, "#"); i >= 0 {
 		raw := link[i+1:]
 		if unescaped, err := url.QueryUnescape(raw); err == nil {
-			return unescaped
+			name = unescaped
+		} else {
+			name = raw
 		}
-		return raw
 	}
-	return ""
+	return strings.TrimSpace(name)
 }
 
 func extractVMessName(link string) string {
@@ -754,6 +755,7 @@ func extractVMessName(link string) string {
 
 func UpdateName(link string, newName string) string {
 	link = strings.TrimSpace(link)
+	newName = strings.TrimSpace(newName)
 	proto := GetProtocol(link)
 	if proto == "vmess" {
 		return updateVMessName(link, newName)
