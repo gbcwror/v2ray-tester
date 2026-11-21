@@ -1,47 +1,37 @@
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.106.186.155:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=api.findlocaljobnetworkandbuildcommunityconnections.com#Tel@MARAMBASHI 🇦🇱
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@167.88.61.175:443?sni=blog.browseseniorrolesandenhanceyourcareertoday.com&type=tcp#[🇺🇸]t.me/ConfigsHub [1]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.112.142:443?sni=cdn.unlockyourfuturefindyourperfectcareer.com&type=tcp#✅@AR14N24b [1]
 trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@167.88.61.193:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=browseseniorrolesandenhanceyourcareertoday.com#Tel@MARAMBASHI 🇫🇮 [1]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.112.242:443?security=tls&sni=resources.unlockyourfuturefindyourperfectcareer.com&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#✅@AR14N24b [1]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.155.176:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=blog.nextjobopportunityandclaimyouridealrole.com#✅@AR14N24b [2]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.155.54:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=learn.nextjobopportunityandclaimyouridealrole.com#✅@AR14N24b [3]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.155.59:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=api.nextjobopportunityandclaimyouridealrole.com#✅@AR14N24b [4]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.147.79:443?security=tls&sni=blog.connectingpeoplewithgreatjobs.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#✅@AR14N24b [5]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-ca1947.shopingggg.ir:443?security=tls&headerType=none&type=tcp&sni=blog.connectingpeoplewithgreatjobs.com#✅@AR14N24b [6]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.122.46:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=searchnationwidecareerchangehelperandguidancetoday.com#✅@AR14N24b [7]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.122.26:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=blog.searchnationwidecareerchangehelperandguidancetoday.com#✅@AR14N24b [8]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.122.25:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=cdn.searchnationwidecareerchangehelperandguidancetoday.com#✅@AR14N24b [9]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.112:443?security=tls&sni=resources.explorecreativejobsandenhanceyourcareerportfolio.com&type=tcp&headerType=none#✅@AR14N24b [10]
-trojan://6-FrR5YsfjfyNp6AIFZgcQ@ipfast.kingmna.com:443?pcs=cd6e838b9bfe31cab8b3d5c858b0d6223fe84ece236c1fdb281be93c302e1e6e&path=%2FTELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER&security=tls&insecure=0&host=copy_az_channel_NUFiLTER_17i.global.ssl.fastly.net.&type=ws&allowInsecure=0&sni=cdn.akamai.steamstatic.com#✅@AR14N24b [11]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.67:443?security=tls&sni=courses.explorecreativejobsandenhanceyourcareerportfolio.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#✅@AR14N24b [12]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.53:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=www.explorecreativejobsandenhanceyourcareerportfolio.com#✅@AR14N24b [13]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.131:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=blog.explorecreativejobsandenhanceyourcareerportfolio.com#✅@AR14N24b [14]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.237:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=cdn.explorecreativejobsandenhanceyourcareerportfolio.com#Tel@MARAMBASHI 🇳🇱
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.156.159:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=resources.healthcarejobshubenhancemedicalprofessionalskillstoday.com#[🇺🇸]t.me/ConfigsHub [2]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.156.49:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=cdn.healthcarejobshubenhancemedicalprofessionalskillstoday.com#✅@AR14N24b [15]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@169.197.140.218:443?security=tls&insecure=0&host=%2F%3FTelegram---%40pirozi_ArGaP---%40pirozi_ArGaP---%40pirozi_ArGaP---%40pirozi_ArGaP&headerType=none&type=tcp&allowInsecure=0&sni=learn.discoverfreshgraduatejobsstartyourprofessionaljourney.com#✅@AR14N24b [16]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.96:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=learn.iloverussia2026.com#@hex_proxy ³ [1]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.15:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=courses.iloverussia2026.com#@hex_proxy ⁶ [1]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.78:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=www.iloverussia2026.com#@hex_proxy ²
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.29:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=blog.iloverussia2026.com#@hex_proxy ⁵
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.134:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=api.iloverussia2026.com#@hex_proxy ⁷
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-de5569.shopingggg.ir:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=courses.iloverussia2026.com#✅@AR14N24b [17]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@158.247.253.243:443?sni=connectgraduateswithjobopeningsandgrowprofessionally.com&allowInsecure=1#✅@AR14N24b [18]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.155:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=indyourperfectremotetechjobfromthecomfortofhome.com#✅@AR14N24b [19]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-cl0640.shopingggg.ir:443?security=tls&headerType=none&type=tcp&sni=advanceyouremploymentskillsandcareerdevelopmenthub.com#✅@AR14N24b [20]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.193:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=resources.iloverussia2026.com#✅@AR14N24b [21]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.215:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=courses.indyourperfectremotetechjobfromthecomfortofhome.com#@hex_proxy ⁴
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.154:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&fp=firefox&type=tcp&allowInsecure=0&sni=www.indyourperfectremotetechjobfromthecomfortofhome.com#Tel@MARAMBASHI 💎
-trojan://FkQH0Q5EFneySv20Qj3yoArD2GSb2XZF@leviko-se6097.shopingggg.ir:443?security=tls&alpn=h2%2Chttp%2F1.1&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=connect-se.mimowhat.online#✅@AR14N24b [22]
-trojan://FkQH0Q5EFneySv20Qj3yoArD2GSb2XZF@95.143.196.97:443?security=tls&alpn=h2%2Chttp%2F1.1&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=connect-se.mimowhat.online#✅@AR14N24b [23]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-de5955.shopingggg.ir:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=courses.iloverussia2026.com#✅@AR14N24b [24]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.225:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=cdn.indyourperfectremotetechjobfromthecomfortofhome.com#@hex_proxy ⁸
-trojan://d7563108-615c-4338-a7bd-77f359869a4a@157.254.38.210:20103?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=hk.catxstar.com#Tel@MARAMBASHI 🇧🇷
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-nl2695.shopingggg.ir:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=learn.indyourperfectremotetechjobfromthecomfortofhome.com#✅@AR14N24b [25]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@167.88.61.175:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=blog.browseseniorrolesandenhanceyourcareertoday.com#[🇺🇸]t.me/ConfigsHub [1]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@167.88.61.198:443?sni=cdn.browseseniorrolesandenhanceyourcareertoday.com&type=tcp#✅@AR14N24b [2]
+trojan://6-FrR5YsfjfyNp6AIFZgcQ@ipfast.kingmna.com:443?pcs=cd6e838b9bfe31cab8b3d5c858b0d6223fe84ece236c1fdb281be93c302e1e6e&path=%2FTELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER-TELEGRAM-%40NUFiLTER&security=tls&insecure=0&host=copy_az_channel_NUFiLTER_7i.global.ssl.fastly.net.&type=ws&allowInsecure=0&sni=cdn.akamai.steamstatic.com#✅@AR14N24b [3]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@169.197.140.171:443?security=tls&headerType=none&type=tcp&allowInsecure=0&sni=cdn.discoverfreshgraduatejobsstartyourprofessionaljourney.com#✅@AR14N24b [4]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@64.176.7.205:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=advanceyouremploymentskillsandcareerdevelopmenthub.com#✅@AR14N24b [5]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.134:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=api.iloverussia2026.com#@hex_proxy ¹
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-cl0640.shopingggg.ir:443?security=tls&headerType=none&type=tcp&sni=advanceyouremploymentskillsandcareerdevelopmenthub.com#✅@AR14N24b [6]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.29:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=blog.iloverussia2026.com#@hex_proxy ⁵ [1]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@158.247.253.243:443?sni=connectgraduateswithjobopeningsandgrowprofessionally.com&allowInsecure=1#✅@AR14N24b [7]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.106.186.33:443?sni=resources.findlocaljobnetworkandbuildcommunityconnections.com&type=tcp&fp=chrome#[🇺🇸]t.me/ConfigsHub [2]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.106.186.155:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=api.findlocaljobnetworkandbuildcommunityconnections.com#Tel@MARAMBASHI 🇦🇱
+trojan://463f7453753f4d47@ikr200.zxom.eu.org:20045?encryption=chacha20#✅@AR14N24b [8]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@169.197.140.214:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=courses.discoverfreshgraduatejobsstartyourprofessionaljourney.com#✅@AR14N24b [9]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.78:443?security=tls&insecure=0&host=%2F&headerType=none&type=tcp&allowInsecure=0&sni=www.iloverussia2026.com#@hex_proxy ⁵ [2]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.34:443?type=tcp&host=%2F%3FTelegram---PLANB_NET---PLANB_NET---PLANB_NET---PLANB_NET&security=tls&sni=cdn.iloverussia2026.com#✅@AR14N24b [10]
+trojan://d7563108-615c-4338-a7bd-77f359869a4a@157.254.38.210:20103?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=hk.catxstar.com#Tel@MARAMBASHI 💜
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.15:443?security=tls&sni=courses.iloverussia2026.com#✅@AR14N24b [11]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.193:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=resources.iloverussia2026.com#@hex_proxy ⁶
+trojan://og85o9QeVVvtMD2sxPjO@sonau.yaremonta.loc.cc:8444?security=none&headerType=&type=tcp#✅@AR14N24b [12]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-de5955.shopingggg.ir:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=courses.iloverussia2026.com#✅@AR14N24b [13]
+trojan://d9064589-74af-432a-9390-5d8a9da281bf@sclass-00.catcat321.com:20123?sni=hk.catxstar.com#✅@AR14N24b [14]
+trojan://d7563108-615c-4338-a7bd-77f359869a4a@157.254.38.210:20051?sni=hk.catxstar.com&allowInsecure=0#✅@AR14N24b [15]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-ch0171.shopingggg.ir:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=www.yourultimateprofessionalcareerhub.com#✅@AR14N24b [16]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.156.159:443?security=tls&headerType=none&type=tcp&allowInsecure=0&sni=resources.healthcarejobshubenhancemedicalprofessionalskillstoday.com#✅@AR14N24b [17]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@208.69.78.29:443?security=tls&sni=learn.yourultimateprofessionalcareerhub.com&fp=chrome&type=tcp&headerType=none#✅@AR14N24b [18]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@193.108.119.96:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=learn.iloverussia2026.com#@hex_proxy ⁷
+trojan://d7563108-615c-4338-a7bd-77f359869a4a@sclass-b1.catcat321.com:20051?allowInsecure=1&sni=hk.catxstar.com#✅@AR14N24b [19]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@170.101.101.53:443?type=tcp&security=tls&headerType=none&sni=www.explorecreativejobsandenhanceyourcareerportfolio.com#✅@AR14N24b [20]
+trojan://d7563108-615c-4338-a7bd-77f359869a4a@sclass-01.catcat321.com:20103?allowInsecure=1&sni=hk.catxstar.com#✅@AR14N24b [21]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@216.152.147.79:443?security=tls&sni=blog.connectingpeoplewithgreatjobs.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#✅@AR14N24b [22]
 trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.118.203:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=blog.discovergreatjobsandadvanceyourcareer.com#Tel@MARAMBASHI 🇫🇷
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-es7501.shopingggg.ir:443?security=tls&insecure=0&host=%2&headerType=none&type=tcp&allowInsecure=0&sni=api.discovergreatjobsandadvanceyourcareer.com#✅@AR14N24b [26]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@208.69.78.33:443?security=tls&insecure=0&headerType=none&fp=chrome&type=tcp&allowInsecure=0&sni=courses.yourultimateprofessionalcareerhub.com#@hex_proxy ³ [2]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.154:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&fp=firefox&type=tcp&allowInsecure=0&sni=www.indyourperfectremotetechjobfromthecomfortofhome.com#Tel@MARAMBASHI 💎
 trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.44:443?security=tls&insecure=0&host=%2F%3FTELEGRAM---MARAMBASHI---MARAMBASHI---MARAMBASHI---MARAMBASHI&headerType=none&type=tcp&allowInsecure=0&sni=learn.indyourperfectremotetechjobfromthecomfortofhome.com#Tel@MARAMBASHI 🇫🇮 [2]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@208.69.78.158:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=api.yourultimateprofessionalcareerhub.com#@hex_proxy ⁶ [2]
-trojan://d9064589-74af-432a-9390-5d8a9da281bf@sclass-c2.catcat321.com:20051?allowInsecure=0&sni=hk.catxstar.com#✅@AR14N24b [27]
-trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@leviko-ch0171.shopingggg.ir:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=www.yourultimateprofessionalcareerhub.com#✅@AR14N24b [28]
-trojan://d7563108-615c-4338-a7bd-77f359869a4a@sclass-b1.catcat321.com:20051?allowInsecure=1&sni=hk.catxstar.com#✅@AR14N24b [29]
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.225:443?security=tls&insecure=0&headerType=none&type=tcp&allowInsecure=0&sni=cdn.indyourperfectremotetechjobfromthecomfortofhome.com#@hex_proxy ⁸
+trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@66.163.127.107:443?security=tls&sni=blog.indyourperfectremotetechjobfromthecomfortofhome.com&fp=chrome&type=tcp&headerType=none#✅@AR14N24b [23]
